@@ -40,8 +40,8 @@ $ CC=gcc-6 cmake .. && make
 - To execute inside the `build` folder use the following format: 
 
 ```
-$ ./unscentedKF /PATH/TO/INPUT/FILE /PATH/TO/OUTPUT/FILE
-$ ./unscentedKF ../data/data-3.txt ../data/out-3.txt
+$ ./bin/UnscentedKF /PATH/TO/INPUT/FILE /PATH/TO/OUTPUT/FILE
+$ ./bin/UnscentedKF ../data/data-3.txt ./out-3.txt
 ```
 
 - Please use the following format for your input file
