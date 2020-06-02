@@ -26,10 +26,10 @@ turning (yaw rate) at any point in time.**
 
 -----
 # BASIC USAGE
-- Dependencies are same as in [here](https://github.com/mithi/fusion-ekf)
+- Dependencies are same as in [here](https://github.com/huihui308/fusion-ukf.git)
 - Clone this repository 
 ```
-$ git clone https://github.com/mithi/fusion-ukf/
+$ git clone https://github.com/huihui308/fusion-ukf.git
 ```
 - Go inside the `build` folder and compile: 
 ```
