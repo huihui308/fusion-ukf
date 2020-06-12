@@ -1,6 +1,10 @@
 #ifndef SETTINGS_H_
 #define SETTINGS_H_
 
+
+#include <math.h>
+
+
 enum class DataPointType{
   LIDAR, RADAR, STATE, TRUTH
 };

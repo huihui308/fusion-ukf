@@ -3,21 +3,22 @@
 
 #include <stdlib.h>
 #include <iostream>
-#include "../src/Eigen/Dense"
 #include "settings.h"
+#include "../src/Eigen/Dense"
+
 
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
 
-class DataPoint{
 
-  private:
+class DataPoint {
+private:
     long long timestamp;
     bool initialized;
     DataPointType data_type;
     VectorXd raw;
 
-  public:
+public:
     DataPoint();
     DataPoint(const long long timestamp, const DataPointType& data_type, const VectorXd& raw);
     void set(const long long timestamp, const DataPointType& data_type, const VectorXd& raw);
@@ -28,5 +29,6 @@ class DataPoint{
     long long get_timestamp() const;
     void print() const;
 };
+
 
 #endif /* DATAPOINT_H_*/
