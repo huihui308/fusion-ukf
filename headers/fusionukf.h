@@ -13,9 +13,8 @@ using Eigen::MatrixXd;
 using Eigen::VectorXd;
 
 
-class FusionUKF{
-
-  private:
+class FusionUKF {
+private:
     bool initialized;
     long long timestamp;
     double nis;
@@ -29,7 +28,7 @@ class FusionUKF{
     void initialize(const DataPoint& data);
     void update(const DataPoint& data);
 
-  public:
+public:
     FusionUKF();
     void process(const DataPoint& data);
     VectorXd get() const;
