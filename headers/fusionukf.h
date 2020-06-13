@@ -1,15 +1,17 @@
 #ifndef FUSIONUKF_H_
 #define FUSIONUKF_H_
 
-#include "../src/Eigen/Dense"
-#include "measurementpredictor.h"
-#include "statepredictor.h"
-#include "stateupdater.h"
 #include "settings.h"
 #include "datapoint.h"
+#include "Eigen/Dense"
+#include "stateupdater.h"
+#include "statepredictor.h"
+#include "measurementpredictor.h"
+
 
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
+
 
 class FusionUKF{
 

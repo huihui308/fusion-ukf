@@ -1,12 +1,14 @@
 #ifndef MEASUREMENTPREDICTOR_H_
 #define MEASUREMENTPREDICTOR_H_
 
-#include "../src/Eigen/Dense"
 #include "tools.h"
 #include "settings.h"
+#include "Eigen/Dense"
+
 
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
+
 
 /******************************
  MeasurementPredictor is a class responsible for
@@ -18,9 +20,10 @@ using Eigen::VectorXd;
  to get the corresponding calculated values
 *******************************/
 
-class MeasurementPredictor{
 
-  private:
+class MeasurementPredictor {
+
+private:
     int nz;
     DataPointType current_type;
     MatrixXd R;
@@ -34,7 +37,7 @@ class MeasurementPredictor{
     MatrixXd compute_z(const MatrixXd& sigma_z);
     MatrixXd compute_S(const MatrixXd& sigma_z, const MatrixXd& predicted_z);
 
-  public:
+public:
     MeasurementPredictor();
     void process(const MatrixXd& sigma_x, const DataPointType sensor_type);
     MatrixXd get_sigma() const;

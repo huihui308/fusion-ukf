@@ -1,12 +1,14 @@
 #ifndef STATEPREDICTOR_H_
 #define STATEPREDICTOR_H_
 
-#include "../src/Eigen/Dense"
 #include "tools.h"
 #include "settings.h"
+#include "Eigen/Dense"
+
 
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
+
 
 /******************************
  StatePredictor is a class responsible for calculating the predicted sigma,
@@ -19,9 +21,8 @@ using Eigen::VectorXd;
  to get the corresponding calculated values
 *******************************/
 
-class StatePredictor{
-
-  private:
+class StatePredictor {
+private:
     MatrixXd sigma = MatrixXd(NX, NSIGMA); //predicted sigma points
     VectorXd x = VectorXd(NX); // predicted state vector
     MatrixXd P = MatrixXd(NX, NX); // predicted state covariance matrix
@@ -32,7 +33,7 @@ class StatePredictor{
     VectorXd predict_x(const MatrixXd& predicted_sigma);
     MatrixXd predict_P(const MatrixXd& predicted_sigma, const VectorXd& predicted_x);
 
-  public:
+public:
     StatePredictor();
     void process(VectorXd& current_x, MatrixXd& current_P, double dt);
     MatrixXd get_sigma() const;

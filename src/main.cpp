@@ -35,14 +35,14 @@ int main(int argc, char* argv[])
     /*******************************************************************
      * READ DATA FROM FILE AND STORE IN MEMORY
      *******************************************************************/
-    vector<DataPoint> all_sensor_data;
     vector<DataPoint> all_truth_data;
+    vector<DataPoint> all_sensor_data;
 
+    string line;
+    string sensor_id;
+    long long timestamp;
     double val1, val2, val3;
     double x, y, vx, vy, v, yaw, yawrate;
-    long long timestamp;
-    string sensor_id;
-    string line;
     while (getline(in_file, line)) {
         istringstream iss(line);
         DataPoint sensor_data;
@@ -107,14 +107,14 @@ int main(int argc, char* argv[])
     vector<VectorXd> estimations_vec;
     vector<VectorXd> ground_truths_vec;
 
+    double nis;
+    VectorXd truth;
+    string sensor_name;
     VectorXd prediction;
     VectorXd measurement;
-    VectorXd truth;
-    DataPointType sensor_type;
     DataPoint estimation;
     DataPoint sensor_data;
-    string sensor_name;
-    double nis;
+    DataPointType sensor_type;
 
     for (int k = 0; k < all_sensor_data.size(); ++k) {
         /*******************************************************************

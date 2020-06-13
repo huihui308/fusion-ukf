@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include "settings.h"
-#include "../src/Eigen/Dense"
+#include "Eigen/Dense"
 
 
 using Eigen::MatrixXd;
