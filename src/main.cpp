@@ -42,11 +42,11 @@ int main(int argc, char* argv[])
     string sensor_id;
     long long timestamp;
     double val1, val2, val3;
-    double x, y, vx, vy, v, yaw, yawrate;
+    double px, py, vx, vy, v, yaw, yawrate;
     while (getline(in_file, line)) {
-        istringstream iss(line);
-        DataPoint sensor_data;
         DataPoint truth_data;
+        DataPoint sensor_data;
+        istringstream iss(line);
 
         iss >> sensor_id;
         if (sensor_id.compare("L") == 0) {
@@ -67,8 +67,8 @@ int main(int argc, char* argv[])
             radar_vec << val1, val2, val3;
             sensor_data.set(timestamp, DataPointType::RADAR, radar_vec);
         }
-        iss >> x;
-        iss >> y;
+        iss >> px;
+        iss >> py;
         iss >> vx;
         iss >> vy;
         iss >> yaw;
@@ -76,7 +76,7 @@ int main(int argc, char* argv[])
 
         v = sqrt(vx * vx + vy * vy);
         VectorXd truth_vec(NX);
-        truth_vec << x, y, v, yaw, yawrate;
+        truth_vec << px, py, v, yaw, yawrate;
         truth_data.set(timestamp, DataPointType::STATE, truth_vec);
         all_sensor_data.push_back(sensor_data);
         all_truth_data.push_back(truth_data);
@@ -120,7 +120,7 @@ int main(int argc, char* argv[])
         /*******************************************************************
          * STORE ALL DATA FROM SENSOR AND GROUND TRUTH TO MEMORY
          *******************************************************************/
-        truth =  all_truth_data[k].get_vec();
+        truth = all_truth_data[k].get_vec();
         sensor_data = all_sensor_data[k];
         timestamp = sensor_data.get_timestamp();
 
@@ -156,13 +156,12 @@ int main(int argc, char* argv[])
         estimation.set(timestamp, DataPointType::STATE, prediction);
         estimations_vec.push_back(estimation.get_vec());
         predictions.push_back(prediction);
-
         ground_truths_vec.push_back(truth);
         ground_truths.push_back(all_truth_data[k].get_state());
     }/* end for (int k = 0; k < all_sensor_data.size(); ++k) { */
     /*******************************************************************
-    * CALCULATE ROOT MEAN SQUARE ERROR
-    *******************************************************************/
+     * CALCULATE ROOT MEAN SQUARE ERROR
+     *******************************************************************/
     VectorXd RMSE;
 
     RMSE = calculate_RMSE(estimations_vec, ground_truths_vec);

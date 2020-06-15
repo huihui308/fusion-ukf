@@ -70,7 +70,7 @@ time_stamp  px_state  py_state  v_state yaw_angle_state yaw_rate_state  sensor_t
 -----
 # NOTES
 
-### If you take a look at [settings](https://github.com/mithi/Fusion-UKF-CPP/blob/master/headers/settings.h) you'll see the following:
+### If you take a look at [settings](https://github.com/huihui308/fusion-ukf/blob/david/headers/settings.h) you'll see the following:
 ```
 //process noise standard deviations
 const double STD_SPEED_NOISE = 0.9; // longitudinal acceleration in m/s^2
