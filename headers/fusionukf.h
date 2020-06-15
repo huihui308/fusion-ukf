@@ -15,16 +15,16 @@ using Eigen::VectorXd;
 
 class FusionUKF {
 private:
+    double nis;
     bool initialized;
     long long timestamp;
-    double nis;
     VectorXd x = VectorXd(NX);
     MatrixXd P = MatrixXd(NX, NX);
     StatePredictor statePredictor;
     MeasurementPredictor measurementPredictor;
     StateUpdater stateUpdater;
 
-    //PRIVATE FUNCTIONS
+    // PRIVATE FUNCTIONS
     void initialize(const DataPoint& data);
     void update(const DataPoint& data);
 

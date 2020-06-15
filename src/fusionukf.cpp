@@ -23,7 +23,6 @@ void FusionUKF::update(const DataPoint& data)
 
     // get the time difference in seconds
     double dt = (data.get_timestamp() - this->timestamp) / 1.0e6;
-
     // STATE PREDICTION
     // get predicted state and covariance of predicted state, predicted sigma points in state space
     this->statePredictor.process(this->x, this->P, dt);
@@ -42,7 +41,7 @@ void FusionUKF::update(const DataPoint& data)
     // updated the state and covariance of state... also get the nis
     this->stateUpdater.process(this->x, predicted_z, data.get(), S, this->P, sigma_x, sigma_z);
     this->x = this->stateUpdater.getx();
-    this->P  = this->stateUpdater.getP();
+    this->P = this->stateUpdater.getP();
     this->nis = this->stateUpdater.get_nis();
 
     // update timestamp

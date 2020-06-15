@@ -30,7 +30,7 @@ MatrixXd MeasurementPredictor::compute_sigma_z(
     const double THRESH = 1e-4;
     MatrixXd sigma = MatrixXd::Zero(this->nz, NSIGMA);
 
-    for (int c = 0; c < NSIGMA; c++) {
+    for (int32_t c = 0; c < NSIGMA; c++) {
         if (this->current_type == DataPointType::RADAR) {
             const double px = sigma_x(0, c);
             const double py = sigma_x(1, c);
@@ -61,7 +61,7 @@ MatrixXd MeasurementPredictor::compute_z(const MatrixXd& sigma)
 {
     VectorXd z = VectorXd::Zero(this->nz);
 
-    for (int c = 0; c < NSIGMA; c++) {
+    for (int32_t c = 0; c < NSIGMA; c++) {
         z += WEIGHTS[c] * sigma.col(c);
     }
 
@@ -75,7 +75,7 @@ MatrixXd MeasurementPredictor::compute_S(
     VectorXd dz;
     MatrixXd S = MatrixXd::Zero(this->nz, this->nz);
 
-    for (int c = 0; c < NSIGMA; c++) {
+    for (int32_t c = 0; c < NSIGMA; c++) {
         dz = sigma.col(c) - z;
         if(this->current_type == DataPointType::RADAR) {
             dz(1) = normalize(dz(1));

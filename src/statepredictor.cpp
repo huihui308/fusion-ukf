@@ -20,8 +20,8 @@ MatrixXd StatePredictor::compute_augmented_sigma(
     const MatrixXd L = augmented_P.llt().matrixL();
     augmented_sigma.col(0) = augmented_x;
 
-    for (int c = 0; c < NAUGMENTED; c++) {
-        const int i = c + 1;
+    for (int32_t c = 0; c < NAUGMENTED; c++) {
+        const int32_t i = c + 1;
         augmented_sigma.col(i)  = augmented_x + SCALE * L.col(c);
         augmented_sigma.col(i + NAUGMENTED)  = augmented_x - SCALE * L.col(c);
     }
@@ -36,7 +36,7 @@ MatrixXd StatePredictor::predict_sigma(
     const double THRESH = 0.001;
     MatrixXd predicted_sigma = MatrixXd(NX, NSIGMA);
 
-    for (int c = 0; c < NSIGMA; ++c) {
+    for (int32_t c = 0; c < NSIGMA; ++c) {
         /*************************************
          * Get the current state
          *************************************/
@@ -47,7 +47,6 @@ MatrixXd StatePredictor::predict_sigma(
         const double yawrate = augmented_sigma(4, c);
         const double speed_noise = augmented_sigma(5, c);
         const double yawrate_noise = augmented_sigma(6, c);
-
         /*************************************
          * predict the next state with noise
          * USING THE CTRV MODEL
@@ -89,7 +88,7 @@ MatrixXd StatePredictor::predict_sigma(
         predicted_sigma(2, c) = p_speed;
         predicted_sigma(3, c) = p_yaw;
         predicted_sigma(4, c) = p_yawrate;
-    }/* end for (int c = 0; c < NSIGMA; ++c) { */
+    }/* end for (int32_t c = 0; c < NSIGMA; ++c) { */
 
     return predicted_sigma;
 }
@@ -99,7 +98,7 @@ VectorXd StatePredictor::predict_x(
 {
     VectorXd predicted_x = VectorXd::Zero(NX);
 
-    for (int c = 0; c < NSIGMA; c++) {
+    for (int32_t c = 0; c < NSIGMA; c++) {
         predicted_x += WEIGHTS[c] * predicted_sigma.col(c);
     }
 
@@ -113,7 +112,7 @@ MatrixXd StatePredictor::predict_P(
     VectorXd dx = VectorXd(NX);
     MatrixXd predicted_P = MatrixXd::Zero(NX, NX);
 
-    for (int c = 0; c < NSIGMA; c++) {
+    for (int32_t c = 0; c < NSIGMA; c++) {
         dx = predicted_sigma.col(c) - predicted_x;
         dx(3) = normalize(dx(3));
         predicted_P += WEIGHTS[c] * dx * dx.transpose();

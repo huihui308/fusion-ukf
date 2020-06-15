@@ -27,7 +27,7 @@ private:
     VectorXd x = VectorXd(NX); // predicted state vector
     MatrixXd P = MatrixXd(NX, NX); // predicted state covariance matrix
 
-    //PRIVATE FUNCTIONS
+    // PRIVATE FUNCTIONS
     MatrixXd compute_augmented_sigma(const VectorXd& current_x, const MatrixXd& current_P);
     MatrixXd predict_sigma(const MatrixXd& augmented_sigma, double dt);
     VectorXd predict_x(const MatrixXd& predicted_sigma);
