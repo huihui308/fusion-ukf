@@ -77,7 +77,7 @@ MatrixXd MeasurementPredictor::compute_S(
 
     for (int32_t c = 0; c < NSIGMA; c++) {
         dz = sigma.col(c) - z;
-        if(this->current_type == DataPointType::RADAR) {
+        if (this->current_type == DataPointType::RADAR) {
             dz(1) = normalize(dz(1));
         }
         S += WEIGHTS[c] * dz * dz.transpose();

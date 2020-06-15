@@ -24,7 +24,7 @@ using Eigen::VectorXd;
 class MeasurementPredictor {
 
 private:
-    int nz;
+    int32_t nz;
     DataPointType current_type;
     MatrixXd R;
     VectorXd z;
