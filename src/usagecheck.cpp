@@ -40,7 +40,7 @@ void check_files(
     }
 }
 
-void print_EKF_data(
+void print_UKF_data(
     const VectorXd& RMSE,
     const vector<VectorXd>& estimations,
     const vector<VectorXd>& ground_truths,
