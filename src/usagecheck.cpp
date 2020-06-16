@@ -2,7 +2,7 @@
 
 
 // make sure the user has provided input and output files
-void check_arguments(int argc, char* argv[])
+void check_arguments(int32_t argc, char* argv[])
 {
     bool has_valid_args = false;
     string usage_instructions = "Usage instructions: ";
@@ -42,6 +42,7 @@ void check_files(
 
 void print_UKF_data(
     const VectorXd& RMSE,
+    const vector<VectorXd>& rmses,
     const vector<VectorXd>& estimations,
     const vector<VectorXd>& ground_truths,
     const vector<DataPoint>& all_sensor_data)
@@ -50,9 +51,9 @@ void print_UKF_data(
     cout << setw(15) << left << "RMSE:" << " | " << RMSE(0) << " | " << RMSE(1) << " | " << RMSE(2) << " | " << RMSE(3) << " | " << endl;
     cout << "----------------------------------------------------------------------------------------------------------" << endl;
 
-    for (int k = 0; k < all_sensor_data.size(); ++k) {
+    for (int32_t k = 0; k < all_sensor_data.size(); ++k) {
         cout << "----------------------------------------------------------------------------------------------------------" << endl;
-        cout  << "# " << k + 1 << " : " << all_sensor_data[k].get_timestamp() << endl;
+        cout << "# " << k + 1 << " : " << all_sensor_data[k].get_timestamp() << endl;
         cout << "----------------------------------------------------------------------------------------------------------" << endl;
 
         if (all_sensor_data[k].get_type() == DataPointType::LIDAR) {
@@ -80,5 +81,11 @@ void print_UKF_data(
         cout << setw(15) << left << ground_truths[k](2) << " | ";
         cout << setw(15) << left << ground_truths[k](3) << " | ";
         cout << setw(15) << left << ground_truths[k](4) << " | " << endl;
-    }/* end for (int k = 0; k < all_sensor_data.size(); ++k) { */
+
+        cout << setw(15) << left << "RMSE:" << " | ";
+        cout << setw(15) << left << rmses[k](0) << " | ";
+        cout << setw(15) << left << rmses[k](1) << " | ";
+        cout << setw(15) << left << rmses[k](2) << " | ";
+        cout << setw(15) << left << rmses[k](3) << " | " << endl;
+    }/* end for (int32_t k = 0; k < all_sensor_data.size(); ++k) { */
 }

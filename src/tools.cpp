@@ -17,7 +17,7 @@ VectorXd calculate_RMSE(
     VectorXd rmse(4);
     rmse << 0.0, 0.0, 0.0, 0.0;
 
-    for (int k = 0; k < estimations.size(); ++k) {
+    for (int32_t k = 0; k < estimations.size(); ++k) {
         VectorXd diff = estimations[k] - ground_truths[k];
         diff = diff.array() * diff.array();
         rmse += diff;

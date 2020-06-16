@@ -45,4 +45,4 @@ public:
     VectorXd getz() const;
 };
 
-#endif //MEASUREMENTPREDICTOR_H_
+#endif // MEASUREMENTPREDICTOR_H_

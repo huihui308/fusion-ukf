@@ -23,7 +23,7 @@ const double VAR_YAWRATE_NOISE = STD_YAWRATE_NOISE * STD_YAWRATE_NOISE;
 // RADAR measurements noise standard deviations
 const double STD_RHO = 0.3; // meters
 const double STD_PHI = 0.03; // radians
-const double STD_RHODOT = 0.3; // meters / second
+const double STD_RHODOT = 0.3; // meters/second
 const double VAR_RHO = STD_RHO * STD_RHO;
 const double VAR_PHI = STD_PHI * STD_PHI;
 const double VAR_RHODOT = STD_RHODOT * STD_RHODOT;

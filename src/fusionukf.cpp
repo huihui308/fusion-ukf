@@ -16,10 +16,8 @@ void FusionUKF::initialize(const DataPoint& aiqData)
 
 void FusionUKF::update(const DataPoint& aiqData)
 {
-    MatrixXd S;
-    MatrixXd sigma_x;
-    MatrixXd sigma_z;
     VectorXd predicted_z;
+    MatrixXd S, sigma_x, sigma_z;
 
     // get the time difference in seconds
     double dt = (aiqData.get_timestamp() - this->timestamp) / 1.0e6;

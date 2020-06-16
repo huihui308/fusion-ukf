@@ -18,7 +18,7 @@ using Eigen::MatrixXd;
 using Eigen::VectorXd;
 
 
-int main(int argc, char* argv[])
+int32_t main(int32_t argc, char* argv[])
 {
     /*******************************************************************
      * CHECK IF CORRECTLY EXECUTED BY USER
@@ -102,6 +102,7 @@ int main(int argc, char* argv[])
      * USE DATA AND FUSIONUKF FOR STATE ESTIMATIONS
      *******************************************************************/
     FusionUKF fusionUKF;
+    vector<VectorXd> rmses;
     vector<VectorXd> predictions;
     vector<VectorXd> ground_truths;
     vector<VectorXd> estimations_vec;
@@ -117,7 +118,7 @@ int main(int argc, char* argv[])
     DataPoint sensor_data;
     DataPointType sensor_type;
 
-    for (int k = 0; k < all_sensor_data.size(); ++k) {
+    for (int32_t k = 0; k < all_sensor_data.size(); ++k) {
         /*******************************************************************
          * STORE ALL DATA FROM SENSOR AND GROUND TRUTH TO MEMORY
          *******************************************************************/
@@ -159,16 +160,15 @@ int main(int argc, char* argv[])
         predictions.push_back(prediction);
         ground_truths_vec.push_back(truth);
         ground_truths.push_back(all_truth_data[k].get_state());
-
-#if 0
+        // rmse-----
         RMSE = calculate_RMSE(estimations_vec, ground_truths_vec);
+        rmses.push_back(RMSE);
         //cout << "RMSE:" << endl << RMSE << endl;
-        cout << "----------------------------------------------------------------------------------------------------------" << endl;
-        cout << setw(15) << left << "RMSE" << k << ":" << " | " << RMSE(0) << " | " << RMSE(1) << " | " << RMSE(2) << " | " << RMSE(3) << " | " << endl;
-        cout << "----------------------------------------------------------------------------------------------------------" << endl;
+        //cout << "----------------------------------------------------------------------------------------------------------" << endl;
+        //cout << setw(15) << left << "RMSE" << k << ":" << " | " << RMSE(0) << " | " << RMSE(1) << " | " << RMSE(2) << " | " << RMSE(3) << " | " << endl;
+        //cout << "----------------------------------------------------------------------------------------------------------" << endl;
         //sleep(1);
-#endif
-    }/* end for (int k = 0; k < all_sensor_data.size(); ++k) { */
+    }/* end for (int32_t k = 0; k < all_sensor_data.size(); ++k) { */
     /*******************************************************************
      * CALCULATE ROOT MEAN SQUARE ERROR
      *******************************************************************/
@@ -177,7 +177,7 @@ int main(int argc, char* argv[])
     /*******************************************************************
      * PRINT TO CONSOLE IN A NICE FORMAT FOR DEBUGGING
      *******************************************************************/
-    print_UKF_data(RMSE, predictions, ground_truths, all_sensor_data);
+    print_UKF_data(RMSE, rmses, predictions, ground_truths, all_sensor_data);
     /*******************************************************************
      * CLOSE FILES
      *******************************************************************/
