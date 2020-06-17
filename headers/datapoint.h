@@ -20,8 +20,14 @@ private:
 
 public:
     DataPoint();
-    DataPoint(const long long timestamp, const DataPointType& data_type, const VectorXd& raw);
-    void set(const long long timestamp, const DataPointType& data_type, const VectorXd& raw);
+    DataPoint(
+        const long long timestamp,
+        const DataPointType& data_type,
+        const VectorXd& raw);
+    void set(
+        const long long timestamp,
+        const DataPointType& data_type,
+        const VectorXd& raw);
     VectorXd get() const;
     VectorXd get_state() const;
     VectorXd get_vec() const;

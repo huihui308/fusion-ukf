@@ -19,7 +19,6 @@ MatrixXd StateUpdater::compute_Tc(
         dx(3) = normalize(dx(3));
 
         dz = sigma_z.col(c) - predicted_z;
-
         if (NZ == NZ_RADAR) {
             dz(1) = normalize(dz(1));
         }
@@ -40,6 +39,9 @@ void StateUpdater::update(
     MatrixXd Si = S.inverse();
     MatrixXd K = Tc * Si;
 
+    //std::cout << "------------" << std::endl;
+    //std::cout << K << std::endl;
+    //std::cout << "------------" << std::endl;
     VectorXd dz = z - predicted_z;
     if (dz.size() == NZ_RADAR) {
         // yaw/phi in radians

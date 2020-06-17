@@ -12,6 +12,7 @@
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
 
+
 extern
 double normalize(const double a);
 extern

@@ -42,8 +42,8 @@ MatrixXd MeasurementPredictor::compute_sigma_z(
 
             const double rho = sqrt(px * px + py * py);
             const double phi = atan2(py, px);
-            const double rhodot = (rho > THRESH) ? ((px * vx + py * vy) / rho) : 0.0;
             // avoid division by zero
+            const double rhodot = (rho > THRESH) ? ((px * vx + py * vy) / rho) : 0.0;
 
             sigma(0, c) = rho;
             sigma(1, c) = phi;

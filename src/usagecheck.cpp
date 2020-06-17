@@ -55,7 +55,6 @@ void print_UKF_data(
         cout << "----------------------------------------------------------------------------------------------------------" << endl;
         cout << "# " << k + 1 << " : " << all_sensor_data[k].get_timestamp() << endl;
         cout << "----------------------------------------------------------------------------------------------------------" << endl;
-
         if (all_sensor_data[k].get_type() == DataPointType::LIDAR) {
             VectorXd lidar_v = all_sensor_data[k].get();
             cout << setw(15) << left << "LIDAR:" << " | ";
